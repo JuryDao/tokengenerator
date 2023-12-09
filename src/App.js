@@ -1,11 +1,15 @@
 // src/App.js
 import React from 'react';
-import JuryDAOComponent from './components/ConWal.jsx';
+// Update the import statement to import named components
+import { NFTMinter, MainFrame, ConnectingWallet } from './components/ConWal.jsx';
 
 function App() {
   return (
     <div className="App">
-      <JuryDAOComponent />
+      <NFTMinter />
+      {/* You can use MainFrame and ConnectingWallet components as needed */}
+      <MainFrame />
+      <ConnectingWallet />
     </div>
   );
 }
