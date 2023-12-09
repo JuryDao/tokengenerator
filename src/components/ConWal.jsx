@@ -69,8 +69,15 @@ const NFTMinter = () => {
 
         await contract.methods.mintNFT(name, parseInt(age)).send({ from: accounts[0] });
 
-        const tokenId = await contract.methods.tokenIdCounter().call();
-        const tokenURI = await contract.methods.tokenURI(tokenId).call();
+        // Fetch the total number of tokens (tokenIdCounter)
+        const tokenIdCounter = await contract.methods.tokenIdCounter().call();
+
+        // The minted token ID is the total number of tokens generated so far
+        const tokenId = tokenIdCounter;
+
+        // The minted token URI is set to the contract address
+        const tokenURI = contract.options.address;
+
         setMintedToken({ tokenId, tokenURI });
       } catch (error) {
         console.error('Error minting NFT:', error);
@@ -185,7 +192,7 @@ const NFTMinter = () => {
           {mintedToken && (
             <div>
               <p>Minted Token ID: {mintedToken.tokenId}</p>
-              <p>Minted Token URI: {mintedToken.tokenURI}</p>
+              <p>Minted Token Address: {mintedToken.tokenURI}</p>
             </div>
           )}
           </div>
